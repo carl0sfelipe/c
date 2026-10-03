@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ditado</string>
+    <string name="accessibility_label">Ditado: digitar o texto no campo</string>
+    <string name="accessibility_description">Quando você termina de falar na bolha, o texto transcrito é colado no campo de texto que está em foco. O serviço só procura o campo em foco na hora de colar: não lê, não guarda e não envia nada da tela.</string>
+</resources>

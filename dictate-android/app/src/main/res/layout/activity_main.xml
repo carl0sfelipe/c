@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ditado privado"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Português, inglês e espanhol, detectados sozinhos. Tudo roda no aparelho: o áudio e o texto nunca saem do celular."
+            android:textSize="15sp" />
+
+        <TextView style="@style/Step" android:text="1. Modelo" />
+
+        <TextView
+            android:id="@+id/model_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@android:style/Widget.Material.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/download"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Baixar modelo (use Wi-Fi)" />
+
+        <Button
+            android:id="@+id/import_model"
+            style="@android:style/Widget.Material.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Importar de uma pasta (sem internet)" />
+
+        <TextView style="@style/Step" android:text="2. Permissões" />
+
+        <Button android:id="@+id/grant_mic" style="@style/Grant" />
+        <Button android:id="@+id/grant_overlay" style="@style/Grant" />
+        <Button android:id="@+id/grant_accessibility" style="@style/Grant" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sem a 3ª permissão o texto vai para a área de transferência e você cola. Em app instalado por APK, o Android pode bloquear: Configurações › Apps › Ditado › ⋮ › Permitir configurações restritas."
+            android:textSize="13sp" />
+
+        <TextView style="@style/Step" android:text="3. Ajustes" />
+
+        <Switch
+            android:id="@+id/auto_insert"
+            style="@style/Toggle"
+            android:text="Digitar direto no campo em foco" />
+
+        <Switch
+            android:id="@+id/remove_fillers"
+            style="@style/Toggle"
+            android:text="Tirar hesitações (hum, ã, uh)" />
+
+        <Switch
+            android:id="@+id/voice_commands"
+            style="@style/Toggle"
+            android:text="Comandos: “nova linha”, “novo parágrafo”" />
+
+        <Button
+            android:id="@+id/toggle_bubble"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="24dp"
+            android:text="Abrir bolha"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Toque na bolha e fale. O texto aparece no topo a cada pausa. Toque de novo para terminar. Arraste para mover; segure para fechar."
+            android:textSize="14sp" />
+    </LinearLayout>
+</ScrollView>
