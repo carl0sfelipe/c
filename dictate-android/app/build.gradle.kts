@@ -47,7 +47,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
-    packaging { jniLibs { useLegacyPackaging = false } }
+    // Compressed native libs: ~half the APK size; extracted once at install.
+    packaging { jniLibs { useLegacyPackaging = true } }
 }
 
 dependencies {
