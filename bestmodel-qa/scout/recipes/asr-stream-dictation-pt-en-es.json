@@ -1,0 +1,30 @@
+{
+  "recipeId": "asr-stream-dictation-v1",
+  "task": "asr.streaming.dictation",
+  "description": "Live dictation on a phone: partial text while speaking, final text at each pause. Same audio, same scoring, every model.",
+  "languages": {
+    "pt-BR": { "dataset": "google/fleurs", "config": "pt_br", "split": "test", "clips": 200 },
+    "en-US": { "dataset": "google/fleurs", "config": "en_us", "split": "test", "clips": 200 },
+    "es-419": { "dataset": "google/fleurs", "config": "es_419", "split": "test", "clips": 200 }
+  },
+  "extra_sets": {
+    "code_switch": "40 own recordings mixing PT/EN/ES mid-sentence (consented, kept out of git)",
+    "noise": "FLEURS clips mixed with cafe/street noise at 10 dB SNR"
+  },
+  "feed": { "sample_rate_hz": 16000, "realtime_pacing": true, "chunk_ms": [160, 560, 1120] },
+  "normalization": "whisper_basic_text_normalizer + lowercase + strip punctuation for WER; punctuation scored separately",
+  "metrics": {
+    "wer": "final text vs reference, per language (lower is better)",
+    "cer": "per language",
+    "first_partial_ms": "audio start -> first partial token on screen",
+    "final_latency_ms": "end of speech -> final text (time-to-final)",
+    "partial_stability": "share of partial words that survive into the final text (higher is better)",
+    "rtf": "processing time / audio time (lower is better; must stay < 1 sustained)",
+    "lang_id_accuracy": "auto language detection, per clip",
+    "peak_rss_mb": "process peak memory",
+    "energy_mwh_per_min": "battery drain per minute of audio (BatteryManager / perfetto)",
+    "thermal_throttle_after_s": "seconds of continuous dictation before sustained slowdown"
+  },
+  "rig_fields_required": ["soc", "device_model", "ram_gb", "os_version", "runtime", "backend(cpu|gpu|npu)", "threads", "quant"],
+  "ranking": "Pareto: WER(mean of pt-BR, en-US, es-419) vs final_latency_ms, under the constraint rtf < 0.5 and no thermal throttle in 10 min"
+}
